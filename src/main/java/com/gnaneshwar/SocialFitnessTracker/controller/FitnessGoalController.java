@@ -39,7 +39,7 @@ public class FitnessGoalController {
     }
 
     @PostMapping("/goals/multi")
-    public ResponseEntity<?> createMultipleClasses(@RequestBody List<FitnessGoal> user){
+    public ResponseEntity<?> createMultipleFitnessGoals(@RequestBody List<FitnessGoal> user){
         return new ResponseEntity<>(fitnessGoalService.createMultipleFitnessGoals(user),HttpStatus.CREATED);
     }
 

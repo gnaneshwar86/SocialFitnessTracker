@@ -1,6 +1,6 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
-
+import com.gnaneshwar.SocialFitnessTracker.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +24,3 @@ public class User {
     private Role role;
 }
 
-enum Role{
-    USER, ADMIN
-}

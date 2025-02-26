@@ -1,5 +1,7 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gnaneshwar.SocialFitnessTracker.enums.GoalType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,10 +21,9 @@ public class FitnessGoal {
     private GoalType goalType;
     private double targetValue;
     private double currentValue;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate endDate;
 }
 
-enum GoalType{
-    STEPS, CALORIES, DISTANCE, WORKOUTS
-}
