@@ -1,9 +1,6 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
 import jakarta.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
