@@ -2,6 +2,7 @@ package com.gnaneshwar.SocialFitnessTracker.controller;
 
 import com.gnaneshwar.SocialFitnessTracker.model.Activity;
 import com.gnaneshwar.SocialFitnessTracker.service.ActivityService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,17 +35,17 @@ public class ActivityController {
     }
 
     @PostMapping("/activities")
-    public ResponseEntity<?> createActivity(@RequestBody Activity u){
+    public ResponseEntity<?> createActivity(@Valid @RequestBody Activity u){
         return new ResponseEntity<>(activityService.createActivity(u),HttpStatus.CREATED);
     }
 
     @PostMapping("/activities/multi")
-    public ResponseEntity<?> createMultipleActivities(@RequestBody List<Activity> user){
+    public ResponseEntity<?> createMultipleActivities(@Valid @RequestBody List<Activity> user){
         return new ResponseEntity<>(activityService.createMultipleActivities(user),HttpStatus.CREATED);
     }
 
     @PutMapping("/activities")
-    public ResponseEntity<?> updateActivity(@RequestParam Long id, @RequestBody Activity u){
+    public ResponseEntity<?> updateActivity(@RequestParam Long id, @Valid @RequestBody Activity u){
         Optional<Activity> user = activityService.getActivityById(id);
         if(user.isPresent())
             return new ResponseEntity<>(activityService.updateActivity(id, u),HttpStatus.OK);

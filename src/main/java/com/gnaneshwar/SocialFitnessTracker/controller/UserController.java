@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.gnaneshwar.SocialFitnessTracker.model.User;
 import com.gnaneshwar.SocialFitnessTracker.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("api")
 public class UserController {
     @Autowired
     UserService userService;
@@ -42,17 +43,17 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<?> createUser(@RequestBody User u){
+    public ResponseEntity<?> createUser(@Valid @RequestBody User u){
         return new ResponseEntity<>(userService.createUser(u),HttpStatus.CREATED);
     }
 
     @PostMapping("/users/multi")
-    public ResponseEntity<?> createMultipleClasses(@RequestBody List<User> user){
+    public ResponseEntity<?> createMultipleClasses(@Valid @RequestBody List<User> user){
         return new ResponseEntity<>(userService.createMultipleUsers(user),HttpStatus.CREATED);
     }
     
     @PutMapping("/users")
-    public ResponseEntity<?> updateUser(@RequestParam Long id, @RequestBody User u){
+    public ResponseEntity<?> updateUser(@RequestParam Long id, @Valid @RequestBody User u){
         Optional<User> user = userService.getUserById(id);
         if(user.isPresent())
             return new ResponseEntity<>(userService.updateUser(id, u),HttpStatus.OK);
@@ -80,8 +81,8 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsersByPage(pageable),HttpStatus.OK);
     }
 
-    @GetMapping("/users/{name}")
-    public List<User> findNameStartingWith(@PathVariable String name){
+    @GetMapping("/search")
+    public List<User> findNameStartingWith(@RequestParam String name){
         return userService.findNameStartingWith(name);
     }
     

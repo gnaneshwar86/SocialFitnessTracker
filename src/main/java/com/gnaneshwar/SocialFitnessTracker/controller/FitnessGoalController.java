@@ -2,6 +2,7 @@ package com.gnaneshwar.SocialFitnessTracker.controller;
 
 import com.gnaneshwar.SocialFitnessTracker.model.FitnessGoal;
 import com.gnaneshwar.SocialFitnessTracker.service.FitnessGoalService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,17 +35,17 @@ public class FitnessGoalController {
     }
 
     @PostMapping("/goals")
-    public ResponseEntity<?> createFitnessGoal(@RequestBody FitnessGoal u){
+    public ResponseEntity<?> createFitnessGoal(@Valid @RequestBody FitnessGoal u){
         return new ResponseEntity<>(fitnessGoalService.createFitnessGoal(u),HttpStatus.CREATED);
     }
 
     @PostMapping("/goals/multi")
-    public ResponseEntity<?> createMultipleFitnessGoals(@RequestBody List<FitnessGoal> user){
+    public ResponseEntity<?> createMultipleFitnessGoals(@Valid @RequestBody List<FitnessGoal> user){
         return new ResponseEntity<>(fitnessGoalService.createMultipleFitnessGoals(user),HttpStatus.CREATED);
     }
 
     @PutMapping("/goals")
-    public ResponseEntity<?> updateFitnessGoal(@RequestParam Long id, @RequestBody FitnessGoal u){
+    public ResponseEntity<?> updateFitnessGoal(@RequestParam Long id, @Valid @RequestBody FitnessGoal u){
         Optional<FitnessGoal> user = fitnessGoalService.getFitnessGoalById(id);
         if(user.isPresent())
             return new ResponseEntity<>(fitnessGoalService.updateFitnessGoal(id, u),HttpStatus.OK);

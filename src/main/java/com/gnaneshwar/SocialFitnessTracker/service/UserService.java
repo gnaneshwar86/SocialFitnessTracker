@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.gnaneshwar.SocialFitnessTracker.model.User;
 import com.gnaneshwar.SocialFitnessTracker.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User createUser(User u){
+    public User createUser(@Valid User u){
         return userRepository.save(u);
     }
 

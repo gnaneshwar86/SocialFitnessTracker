@@ -2,6 +2,7 @@ package com.gnaneshwar.SocialFitnessTracker.controller;
 
 import com.gnaneshwar.SocialFitnessTracker.model.Challenge;
 import com.gnaneshwar.SocialFitnessTracker.service.ChallengeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,17 +35,17 @@ public class ChallengeController {
     }
 
     @PostMapping("/challenges")
-    public ResponseEntity<?> createChallenge(@RequestBody Challenge u){
+    public ResponseEntity<?> createChallenge(@Valid @RequestBody Challenge u){
         return new ResponseEntity<>(challengeService.createChallenge(u),HttpStatus.CREATED);
     }
 
     @PostMapping("/challenges/multi")
-    public ResponseEntity<?> createMultipleChallenges(@RequestBody List<Challenge> user){
+    public ResponseEntity<?> createMultipleChallenges(@Valid @RequestBody List<Challenge> user){
         return new ResponseEntity<>(challengeService.createMultipleChallenges(user),HttpStatus.CREATED);
     }
 
     @PutMapping("/challenges")
-    public ResponseEntity<?> updateChallenge(@RequestParam Long id, @RequestBody Challenge u){
+    public ResponseEntity<?> updateChallenge(@RequestParam Long id, @Valid @RequestBody Challenge u){
         Optional<Challenge> user = challengeService.getChallengeById(id);
         if(user.isPresent())
             return new ResponseEntity<>(challengeService.updateChallenge(id, u),HttpStatus.OK);
