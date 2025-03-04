@@ -85,6 +85,10 @@ public class UserController {
     public List<User> findNameStartingWith(@RequestParam String name){
         return userService.findNameStartingWith(name);
     }
-    
+
+    @GetMapping("/findByPhone")
+    public List<User> findByphoneNumber(@RequestParam String phone){
+        return userService.findNyphoneNumber(phone);
+    }
     
 }

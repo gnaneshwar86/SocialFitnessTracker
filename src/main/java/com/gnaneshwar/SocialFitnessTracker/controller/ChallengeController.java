@@ -1,5 +1,6 @@
 package com.gnaneshwar.SocialFitnessTracker.controller;
 
+import com.gnaneshwar.SocialFitnessTracker.model.Activity;
 import com.gnaneshwar.SocialFitnessTracker.model.Challenge;
 import com.gnaneshwar.SocialFitnessTracker.service.ChallengeService;
 import jakarta.validation.Valid;
@@ -71,5 +72,15 @@ public class ChallengeController {
         Sort sort = sortOrder ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
         return new ResponseEntity<>(challengeService.getChallengesByPage(pageable),HttpStatus.OK);
+    }
+
+    @GetMapping("/findActiveChallenge")
+    public List<Challenge> findActiveChallenges(){
+        return challengeService.findActiveChallenges();
+    }
+
+    @GetMapping("/findChallenge")
+    public List<Challenge> findByChallengeNameContaining(String challenge){
+        return challengeService.findByChallengeNameContaining(challenge);
     }
 }

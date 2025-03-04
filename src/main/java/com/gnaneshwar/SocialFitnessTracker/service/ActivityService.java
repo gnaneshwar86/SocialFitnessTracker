@@ -48,4 +48,12 @@ public class ActivityService {
     public List<Activity> createMultipleActivities(List<Activity> user){
         return activityRepository.saveAll(user);
     }
+
+    public List<Activity> findAllActivities() {
+        return activityRepository.findAllActivities();
+    }
+
+    public List<Activity> findByDurationGreaterThan(double duration) {
+        return activityRepository.findByDurationGreaterThan(duration);
+    }
 }

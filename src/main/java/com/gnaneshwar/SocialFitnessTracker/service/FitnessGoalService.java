@@ -1,6 +1,8 @@
 package com.gnaneshwar.SocialFitnessTracker.service;
 
+import com.gnaneshwar.SocialFitnessTracker.enums.GoalType;
 import com.gnaneshwar.SocialFitnessTracker.model.FitnessGoal;
+import com.gnaneshwar.SocialFitnessTracker.model.User;
 import com.gnaneshwar.SocialFitnessTracker.repository.FitnessGoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -48,5 +50,13 @@ public class FitnessGoalService {
 
     public List<FitnessGoal> createMultipleFitnessGoals(List<FitnessGoal> fitnessGoal){
         return fitnessGoalRepository.saveAll(fitnessGoal);
+    }
+
+    public List<FitnessGoal> findActiveGoals() {
+        return fitnessGoalRepository.findActiveGoals();
+    }
+
+    public List<FitnessGoal> findNygoalType(GoalType goal) {
+        return fitnessGoalRepository.findByGoalType(goal);
     }
 }

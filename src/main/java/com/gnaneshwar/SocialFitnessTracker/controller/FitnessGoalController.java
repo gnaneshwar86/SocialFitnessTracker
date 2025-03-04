@@ -1,6 +1,8 @@
 package com.gnaneshwar.SocialFitnessTracker.controller;
 
+import com.gnaneshwar.SocialFitnessTracker.enums.GoalType;
 import com.gnaneshwar.SocialFitnessTracker.model.FitnessGoal;
+import com.gnaneshwar.SocialFitnessTracker.model.User;
 import com.gnaneshwar.SocialFitnessTracker.service.FitnessGoalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +73,16 @@ public class FitnessGoalController {
         Sort sort = sortOrder ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
         return new ResponseEntity<>(fitnessGoalService.getFitnessGoalsByPage(pageable),HttpStatus.OK);
+    }
+
+    @GetMapping("/findActive")
+    public List<FitnessGoal> findActiveGoals(){
+        return fitnessGoalService.findActiveGoals();
+    }
+
+    @GetMapping("/findByGoal")
+    public List<FitnessGoal> findBygoalType(@RequestParam GoalType goal){
+        return fitnessGoalService.findNygoalType(goal);
     }
 
 }

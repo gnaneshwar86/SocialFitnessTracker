@@ -1,5 +1,6 @@
 package com.gnaneshwar.SocialFitnessTracker.service;
 
+import com.gnaneshwar.SocialFitnessTracker.model.Activity;
 import com.gnaneshwar.SocialFitnessTracker.model.Challenge;
 import com.gnaneshwar.SocialFitnessTracker.repository.ChallengeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,13 @@ public class ChallengeService {
 
     public List<Challenge> createMultipleChallenges(List<Challenge> user){
         return challengeRepository.saveAll(user);
+    }
+
+    public List<Challenge> findActiveChallenges() {
+        return challengeRepository.findActiveChallenges();
+    }
+
+    public List<Challenge> findByChallengeNameContaining(String challenge) {
+        return challengeRepository.findByChallengeNameContaining(challenge);
     }
 }

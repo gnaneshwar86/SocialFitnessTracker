@@ -53,4 +53,8 @@ public class UserService {
     public List<User> createMultipleUsers(List<User> user){
         return userRepository.saveAll(user);
     }
+
+    public List<User> findNyphoneNumber(String phone) {
+        return userRepository.findByphoneNumber(phone);
+    }
 }

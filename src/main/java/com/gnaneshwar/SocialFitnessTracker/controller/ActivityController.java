@@ -72,4 +72,14 @@ public class ActivityController {
         Pageable pageable = PageRequest.of(page, size, sort);
         return new ResponseEntity<>(activityService.getActivitiesByPage(pageable),HttpStatus.OK);
     }
+
+    @GetMapping("/findAll")
+    public List<Activity> findAllActivities(){
+        return activityService.findAllActivities();
+    }
+
+    @GetMapping("/findDuration")
+    public List<Activity> findByDurationGreaterThan(double duration){
+        return activityService.findByDurationGreaterThan(duration);
+    }
 }
