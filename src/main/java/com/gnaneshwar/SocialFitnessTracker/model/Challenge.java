@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -32,5 +33,8 @@ public class Challenge {
     private LocalDate endDate;
     @Positive(message = "Target value must be positive")
     private double targetValue;
+
+    @ManyToMany(mappedBy = "challenges")
+    private List<User> participants;
 
 }

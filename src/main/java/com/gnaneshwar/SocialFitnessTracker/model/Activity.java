@@ -31,5 +31,9 @@ public class Activity {
     @NotNull(message = "Timestamp cannot be null")
     @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalDateTime timeStamp;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
 

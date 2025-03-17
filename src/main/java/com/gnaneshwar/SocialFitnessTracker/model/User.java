@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -31,5 +33,19 @@ public class User {
 
     @Enumerated
     private Role role;
-}
 
+    @OneToMany(mappedBy = "user")
+    private List<Activity> activities;
+
+    @OneToMany(mappedBy = "user")
+    private List<FitnessGoal> fitnessGoals;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_challenge",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "challenge_id")
+    )
+    private List<Challenge> challenges;
+
+}

@@ -34,5 +34,9 @@ public class FitnessGoal {
     @NotNull(message = "End date is required")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate endDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
 
