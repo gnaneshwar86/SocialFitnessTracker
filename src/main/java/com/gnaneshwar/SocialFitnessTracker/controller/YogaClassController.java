@@ -42,9 +42,9 @@ public class YogaClassController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/classes")
-    public ResponseEntity<?> createYogaClass(@RequestBody YogaClass u){
-        return new ResponseEntity<>(yogaClassService.createYogaClass(u),HttpStatus.CREATED);
+    @PostMapping("/classes/{userid}")
+    public ResponseEntity<?> createYogaClass(@PathVariable Long userid,@RequestBody YogaClass u){
+        return yogaClassService.createYogaClass(userid,u);
     }
 
     @PostMapping("/classes/multi")
@@ -70,7 +70,7 @@ public class YogaClassController {
     }
 
     @GetMapping("/classes/paginate")
-    public ResponseEntity<?> getYogaClasssByPage(
+    public ResponseEntity<?> getYogaClassesByPage(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id") String sortBy,

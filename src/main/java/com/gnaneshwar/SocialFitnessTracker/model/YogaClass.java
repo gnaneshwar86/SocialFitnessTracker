@@ -1,6 +1,7 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class YogaClass {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("yogaClasses")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "yogaClass")

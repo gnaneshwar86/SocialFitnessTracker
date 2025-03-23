@@ -1,5 +1,6 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gnaneshwar.SocialFitnessTracker.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -35,6 +36,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
     private List<YogaClass> yogaClasses;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
