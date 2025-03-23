@@ -1,13 +1,13 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +21,11 @@ public class YogaClass {
     private String name;
     @JsonIgnore
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "yogaClass")
+    private List<InstructionalVideo> instructionalVideos;
 }

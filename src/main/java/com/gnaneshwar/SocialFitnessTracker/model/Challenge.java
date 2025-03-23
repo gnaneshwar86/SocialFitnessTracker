@@ -35,6 +35,6 @@ public class Challenge {
     private double targetValue;
 
     @ManyToMany(mappedBy = "challenges")
-    private List<User> participants;
+    private List<User> users;
 
 }

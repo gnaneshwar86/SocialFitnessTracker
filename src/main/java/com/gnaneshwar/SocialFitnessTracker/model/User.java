@@ -34,13 +34,19 @@ public class User {
     @Enumerated
     private Role role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<YogaClass> yogaClasses;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<InstructionalVideo> instructionalVideos;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Activity> activities;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<FitnessGoal> fitnessGoals;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_challenge",
             joinColumns = @JoinColumn(name = "user_id"),

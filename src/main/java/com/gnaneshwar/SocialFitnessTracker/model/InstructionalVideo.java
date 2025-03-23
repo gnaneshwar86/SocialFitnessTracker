@@ -1,9 +1,6 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +16,12 @@ public class InstructionalVideo {
     private Long id;
     private String title;
     private String url;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "yoga_class_id")
+    private YogaClass yogaClass;
 }
