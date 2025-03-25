@@ -20,7 +20,6 @@ public class YogaClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonIgnore
     private String description;
 
     @ManyToOne
