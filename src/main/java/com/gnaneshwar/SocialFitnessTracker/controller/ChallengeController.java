@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin("*")
 public class ChallengeController {
     @Autowired
     ChallengeService challengeService;
