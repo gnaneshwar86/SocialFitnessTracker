@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.gnaneshwar.SocialFitnessTracker.model.User;
+import com.gnaneshwar.SocialFitnessTracker.model.YogaClass;
 import com.gnaneshwar.SocialFitnessTracker.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,14 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User createUser(@Valid User u){
-        return userRepository.save(u);
+    public User createUser(@Valid User user){
+        List<YogaClass> yogaClasses = user.getYogaClasses();
+        if(yogaClasses != null){
+            for (YogaClass yogaClass:yogaClasses){
+                yogaClass.setUser(user);
+            }
+        }
+        return userRepository.save(user);
     }
 
     public Optional<User> getUserById(Long id) {

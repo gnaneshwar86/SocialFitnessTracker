@@ -43,8 +43,8 @@ public class YogaClassController {
     }
 
     @PostMapping("/classes/{userid}")
-    public ResponseEntity<?> createYogaClass(@PathVariable Long userid,@RequestBody YogaClass u){
-        return yogaClassService.createYogaClass(userid,u);
+    public ResponseEntity<?> createYogaClass(@PathVariable Long userid,@RequestBody YogaClass yogaClass){
+        return yogaClassService.createYogaClass(userid,yogaClass);
     }
 
     @PostMapping("/classes/multi")

@@ -1,6 +1,7 @@
 package com.gnaneshwar.SocialFitnessTracker.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gnaneshwar.SocialFitnessTracker.enums.GoalType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -37,6 +38,7 @@ public class FitnessGoal {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("fitnessGoals")
     private User user;
 }
 

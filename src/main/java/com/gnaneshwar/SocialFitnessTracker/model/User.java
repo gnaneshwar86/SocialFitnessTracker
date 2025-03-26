@@ -40,12 +40,15 @@ public class User {
     private List<YogaClass> yogaClasses;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
     private List<InstructionalVideo> instructionalVideos;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
     private List<Activity> activities;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
     private List<FitnessGoal> fitnessGoals;
 
     @ManyToMany(cascade = CascadeType.ALL)

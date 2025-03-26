@@ -28,5 +28,6 @@ public class YogaClass {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "yogaClass")
+    @JsonIgnoreProperties("yogaClass")
     private List<InstructionalVideo> instructionalVideos;
 }

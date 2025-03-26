@@ -10,7 +10,6 @@ import com.gnaneshwar.SocialFitnessTracker.repository.YogaClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,17 +20,20 @@ public class YogaClassService {
 
     @Autowired
     UserRepository userRepository;
+
     public List<YogaClass> getAllYogaClasses(){
         return yogaClassRepository.findAll();
     }
 
-    public ResponseEntity<?> createYogaClass(Long userid,YogaClass u){
-        User obj=userRepository.findById(userid).orElse(null);
-        if(obj==null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    public ResponseEntity<?> createYogaClass(Long userid, YogaClass yogaClass){
+        Optional<User> user = userRepository.findById(userid);
+        if(user.isPresent()) {
+            yogaClass.setUser(user.get());
+            return ResponseEntity.ok(yogaClassRepository.save(yogaClass));
         }
-        u.setUser(obj);
-        return ResponseEntity.ok(yogaClassRepository.save(u));
+        else
+            return ResponseEntity.badRequest().body("User Not Found");
+
     }
 
     public Optional<YogaClass> getYogaClassById(Long id) {
